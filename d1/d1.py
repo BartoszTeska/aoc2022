@@ -1,6 +1,5 @@
 from typing import List
 from itertools import groupby
-from heapq import nlargest
 
 
 def getData(test: bool = False) -> List[List[int]]:
@@ -16,8 +15,8 @@ def solution(arr: List[List[int]]) -> int:
     return max(map(lambda x: sum(x), arr))
 
 
-def solution2(arr: List[List[int]]) -> int:
-    return sum(nlargest(3, map(lambda x: sum(x), arr)))
+def solution2(arr: List[List[int]], n: int = 3) -> int:
+    return sum(sorted(map(lambda x: sum(x), arr), reverse=True)[:n])
 
 
 if __name__ == "__main__":
