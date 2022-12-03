@@ -3,7 +3,7 @@ from string import ascii_letters
 from itertools import islice
 
 
-def getData(test=False) -> List[str]:
+def getData(test: bool = False) -> List[str]:
     if test:
         return [
             'vJrwpWtwJgWrhcsFMMfFFhFp',
@@ -37,9 +37,8 @@ def chunk(arr: Iterable, size: int) -> Iterator[Tuple]:
     return iter(lambda: tuple(islice(it, size)), ())
 
 
-def parseGroup(arr: List[str]) -> str:
+def parseGroup(arr: List[Tuple[str]]) -> str:
     char = set.intersection(*[set(x) for x in arr]).pop()
-    print(char)
 
     return char
 
@@ -53,11 +52,12 @@ def solution(arr: List[str]) -> int:
 def solution2(arr: List[str]) -> int:
     groupedLines = list(chunk(arr, 3))
     intersectedChars = list(map(lambda x: parseGroup(x), groupedLines))
-    print(len(intersectedChars))
+
     return sum(map(lambda x: getPriority(x), intersectedChars))
 
 
 if __name__ == "__main__":
     data = getData()
+
     print(solution(data))
     print(solution2(data))

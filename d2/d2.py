@@ -75,5 +75,6 @@ def solution2(arr: List[Tuple[str, str]]) -> int:
 
 if __name__ == "__main__":
     data = getData()
+
     print(solution(data))
     print(solution2(data))
