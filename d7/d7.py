@@ -47,6 +47,7 @@ def parsePaths(arr: List[str]):
                         if p not in directories.keys():
                             directories[p] = 0
                         directories[p] += intSize
+
     return directories
 
 
@@ -60,6 +61,7 @@ def solution2(arr: List[str]) -> int:
     diskSize = 70_000_000
     required = 30_000_000
     directories = parsePaths(arr)
+
     return min([x for x in directories.values() if (directories[Path("/").resolve()] - x) <= diskSize-required])
 
 

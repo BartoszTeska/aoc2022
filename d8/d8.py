@@ -40,6 +40,7 @@ def getScore(tree: int, way: List[int]) -> int:
         if treeInWay >= tree:
             result.append(treeInWay)
             break
+
     return len(result)
 
 
@@ -52,6 +53,7 @@ def getScenicScore(x: int, y: int, forest: List[List[int]]) -> int:
     colUp = col[:x]
     colDown = col[x+1:]
     ways = [rowLeft[::-1], rowRight, colUp[::-1], colDown]
+
     return prod([x if x > 0 else 0 for x in [getScore(tree, way) for way in ways]])
 
 

@@ -34,6 +34,7 @@ def getPriority(item: str) -> int:
 
 def chunk(arr: Iterable, size: int) -> Iterator[Tuple]:
     it = iter(arr)
+
     return iter(lambda: tuple(islice(it, size)), ())
 
 
@@ -58,6 +59,5 @@ def solution2(arr: List[str]) -> int:
 
 if __name__ == "__main__":
     data = getData()
-
     print(solution(data))
     print(solution2(data))

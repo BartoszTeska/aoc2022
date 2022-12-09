@@ -14,12 +14,12 @@ def getData(test: bool = False):
         return crates, rawMoves
 
 
-def parseMoves(arr: List[str]) -> List[List[int]]:
-    return [list(map(int, re.findall(r"\d+", move)))
+def parseMoves(arr: str) -> List[Tuple[int, int, int]]:
+    return [tuple(map(int, re.findall(r"\d+", move)))
             for move in arr.splitlines()]
 
 
-def parseCrates(arr: List[str]) -> List[Deque[str]]:
+def parseCrates(arr: str) -> List[Deque[str]]:
     maxBuckets = max([int(x) for x in arr[len(arr)-1] if x != " "])
     buckets = [deque() for _ in range(maxBuckets)]
 
@@ -31,14 +31,14 @@ def parseCrates(arr: List[str]) -> List[Deque[str]]:
     return buckets
 
 
-def makeMove(buckets: List[Deque[str]], move: Tuple[int, int, int]) -> List[Deque[str]]:
+def makeMove(buckets: List[Deque[str]], move: Tuple[int, int, int]) -> None:
     howMany, origin, destination = move
 
     for _ in range(howMany):
         buckets[destination-1].appendleft(buckets[origin-1].popleft())
 
 
-def makeMove2(buckets: List[Deque[str]], move: Tuple[int, int, int]) -> List[Deque[str]]:
+def makeMove2(buckets: List[Deque[str]], move: Tuple[int, int, int]) -> None:
     howMany, origin, destination = move
     temp = []
     for _ in range(howMany):
@@ -47,7 +47,7 @@ def makeMove2(buckets: List[Deque[str]], move: Tuple[int, int, int]) -> List[Deq
         buckets[destination-1].appendleft(item)
 
 
-def solution(crates: List[str], moves: List[str]) -> str:
+def solution(crates: str, moves: str) -> str:
     buckets = parseCrates(crates)
     parsedMoves = parseMoves(moves)
     for move in parsedMoves:
@@ -56,7 +56,7 @@ def solution(crates: List[str], moves: List[str]) -> str:
     return "".join(x[0] for x in buckets)
 
 
-def solution2(crates: List[str], moves: List[str]) -> str:
+def solution2(crates: str, moves: str) -> str:
     buckets = parseCrates(crates)
     parsedMoves = parseMoves(moves)
     for move in parsedMoves:

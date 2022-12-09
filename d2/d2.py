@@ -70,11 +70,11 @@ def solution(arr: List[Tuple[str, str]]) -> int:
 
 def solution2(arr: List[Tuple[str, str]]) -> int:
     moves = map(lambda x: getMove(x[0], x[1]), arr)
+
     return sum(map(lambda x: rockPaperScissors(x[0], x[1]), moves))
 
 
 if __name__ == "__main__":
     data = getData()
-
     print(solution(data))
     print(solution2(data))
